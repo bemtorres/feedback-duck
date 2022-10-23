@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('correo')->nullable();
             $table->string('comentario')->nullable();
+            $table->json('config')->nullable();
             $table->foreignId('id_muro')->references('id')->on('muro');
             $table->boolean('activo')->default(true);
             $table->timestamps();

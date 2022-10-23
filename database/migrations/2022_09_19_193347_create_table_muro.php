@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Muro;
+use App\Models\Sala;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +18,7 @@ return new class extends Migration
         Schema::create('muro', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
-            $table->string('descripcion');
+            $table->string('descripcion')->nullable();
             $table->string('password')->nullable();
             $table->string('image')->nullable();
             $table->foreignId('id_sala')->references('id')->on('sala');
@@ -24,6 +26,12 @@ return new class extends Migration
             $table->boolean('activo')->default(true);
             $table->timestamps();
         });
+
+        $id_sala = Sala::first()->id;
+        $m = new Muro();
+        $m->titulo = "Delivery";
+        $m->id_sala = $id_sala;
+        $m->save();
     }
 
     /**

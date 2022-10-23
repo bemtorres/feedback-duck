@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Sala;
+use App\Models\Usuario;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -22,6 +24,12 @@ return new class extends Migration
             $table->boolean('activo')->default(true);
             $table->timestamps();
         });
+
+
+        $s = new Sala();
+        $s->nombre = "Diseño y prototipo";
+        $s->id_usuario = Usuario::last()->id;
+        $s->save();
     }
 
     /**
