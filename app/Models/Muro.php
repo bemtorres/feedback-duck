@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Muro extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $table = 'muro';
+  protected $table = 'muro';
 
+  public function feedbacks(){
+    return $this->hasMany(Feedback::class,'id_muro');
+  }
 }

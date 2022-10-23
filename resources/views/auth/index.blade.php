@@ -1,8 +1,8 @@
 @php
   $u=''; $p='';
   if (App::environment(['local'])) {
-    $u = "admin@edugestion.cl";
-    $p = 'admin.edugestion';
+    $u = 'bej.mora@profesor.duoc.cl';
+    $p = 'feebacks';
   }
 
 @endphp
@@ -27,13 +27,25 @@
           <div class="auth-cover-wrapper bg-primary-100">
             <div class="auth-cover">
               <div class="title text-center">
-                <h1 class="text-primary mb-10">Edugestion</h1>
-                <p class="text-medium">
-                  Registro de documentos
+                {{-- <h1 class="text-primary mb-10">Edugestion</h1> --}}
+                <h1 class="title text-center">
+                  <img src="{{ asset('img/icono.svg') }}" width="30" height="30" class="me-2" alt="">
+                  <strong>Feedback Duck</strong>
+                </h1>
+
+                <h1 class="fw-light duck mb-3">
+                  📢 HACE CUACK!!
+                  <img src="{{ asset('img/icono.svg') }}" width="30" height="30" alt="">
+
+                </h1>
+                <p class="lead text-muted mb-3">
+                  Envía tu feedback de forma rápida y sencilla, nos importa tu comentario,
+                  lo leeremos con mucho gusto
                 </p>
-              </div>
-              <div class="cover-image">
-                <img src="{{ asset('template/assets/images/auth/signin-image.svg') }}" alt="" />
+                <img src="{{ asset('img/patobailando.gif') }}" width="200" alt="">
+                <p class="lead text-muted my-3">
+                  Porque tu opinión también vale y hace <strong>CUAK!</strong>
+                </p>
               </div>
               <div class="shape-image">
                 <img src="{{ asset('template/assets/images/auth/shape.svg') }}" alt="" />
@@ -45,7 +57,7 @@
         <div class="col-lg-6">
           <div class="signin-wrapper">
             <div class="form-wrapper">
-              <h6 class="mb-15">Bienvenidos a registro de documentos</h6>
+              <h6 class="mb-15">Bienvenidos</h6>
 
               <p class="text-sm mb-25">
                 {{-- Bienvenidos a  --}}

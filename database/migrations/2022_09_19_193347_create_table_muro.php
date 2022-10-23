@@ -27,7 +27,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        $id_sala = Sala::first()->id;
+        $id_sala = 1;
         $m = new Muro();
         $m->titulo = "Delivery";
         $m->id_sala = $id_sala;

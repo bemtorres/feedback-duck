@@ -10,8 +10,7 @@
   <link rel="stylesheet" href="{{ asset('template/assets/css/lineicons.css') }}" />
   <link rel="stylesheet" href="{{ asset('template/assets/css/materialdesignicons.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('template/assets/css/main.css') }}" />
-
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.1/sweetalert2.css">
 
   <style>
     .bd-placeholder-img {
@@ -78,12 +77,17 @@
         </div>
       </div>
     </div> --}}
-    <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="navbar navbar-dark shadow-sm">
       <div class="container">
+        <a href="{{ route('main.sala',$s->url) }}" href="btn btn-primary bg-primary">
+          VOLVER
+        </a>
         <a href="#" class="navbar-brand d-flex align-items-center">
           <img src="{{ asset('img/icono.svg') }}" width="30" height="30" class="me-2" alt="">
+          <div class="fa fa-home"></div>
           <strong>Feedback Duck</strong>
         </a>
+
         {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button> --}}
@@ -93,54 +97,46 @@
 
   <main>
 
-    <section class="py-5 text-center container">
+    <section class="pt-1 text-center container">
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="fw-light duck mb-3">
-            📢 HACE CUACK!!
-            <img src="{{ asset('img/icono.svg') }}" width="30" height="30" alt="">
-
+          <h1 class="fw-light duck">
+            {{ $s->nombre }}
           </h1>
-          <p class="lead text-muted mb-3">
-            Envía tu feedback de forma rápida y sencilla, nos importa tu comentario,
-            lo leeremos con mucho gusto
-          </p>
-          <img src="{{ asset('img/patobailando.gif') }}" width="100" alt="">
-          <p class="lead text-muted my-3">
-            Porque tu opinión también vale y hace <strong>CUAK!</strong>
-          </p>
+          <h1 class="fw-light duck">
+            {{ $m->titulo }}
+          </h1>
           <p>
-            <a href="#" class="btn btn-primary my-2">Main call to action</a>
-            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+            {{ $m->descripcion }}
           </p>
         </div>
       </div>
     </section>
 
-    <div class="album py-5 bg-light">
+    <div class="album py-3 bg-white">
       <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          @foreach ($salas as $s)
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: IMG TEST" preserveAspectRatio="xMidYMid slice" focusable="false"><title>TEST</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+        <div class="px-5 mt-3">
+          <h4 class="mb-3">Realice su feedback</h4>
+          <form class="form-submit" action="{{ route('main.sala.muro.store',[$s->url, $m->id]) }}" method="POST">
+            @csrf
+            <hr class="my-4">
+            <div class="row gy-3">
+              <div class="col-md-12">
+                <label for="cc-name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="nombre" id="cc-name" placeholder="" required="">
+              </div>
 
-                <div class="card-body">
-                  <h4 class="card-title text-center mb-3">
-                    {{ $s->nombre }}
-                  </h4>
-                  <div class="d-flex justify-content-center align-items-center">
-                    <div class="btn-group">
-                      <a href="{{ route('main.sala',$s->url) }}" class="btn btn-sm btn-primary">
-                        <strong>ENTRAR</strong>
-                      </a>
-                    </div>
-                  </div>
-                </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Feedback</label>
+                <textarea class="form-control" name="feedback" id="" rows="3" required></textarea>
               </div>
             </div>
-          @endforeach
+
+            <hr class="my-4">
+            <button class="w-100 btn btn-primary btn-lg" type="submit">ENVIAR</button>
+          </form>
         </div>
+
       </div>
     </div>
 
@@ -155,8 +151,29 @@
     </div>
   </footer>
 
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="{{ asset('template/assets/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('template/assets/js/main.js') }}"></script>
+  <script src="{{ asset('custom/double-request.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.1/sweetalert2.js"></script>
+
+  @if (session('success'))
+  <script>
+    Swal.fire(
+      '¡Recibido!',
+      'Gracias por tu feedback!',
+      'success'
+    );
+  </script>
+  @endif
+  @if (session('danger'))
+  <script>
+    Swal.fire(
+      'Error',
+      'Intente nuevamente',
+      'error'
+    );
+  </script>
+  @endif
 </body>
 </html>

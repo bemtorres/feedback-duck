@@ -7,8 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sala extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $table = 'sala';
+  protected $table = 'sala';
 
+  public function muros(){
+    return $this->hasMany(Muro::class,'id_sala');
+  }
+
+  public function usuario(){
+    return $this->belongsTo(Usuario::class,'id_usuario');
+  }
 }

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('template/assets/css/lineicons.css') }}" />
     <link rel="stylesheet" href="{{ asset('template/assets/css/materialdesignicons.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('template/assets/css/main.css') }}" />
-
+    <script src="https://kit.fontawesome.com/843e61752f.js" crossorigin="anonymous"></script>
     <style>
       .header {
         padding: 10px 0;

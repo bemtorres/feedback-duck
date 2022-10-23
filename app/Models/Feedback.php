@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Feedback extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $table = 'feedback';
+  protected $table = 'feedback';
 
+  public function muro(){
+    return $this->belongsTo(Muro::class,'id_muro');
+  }
 }

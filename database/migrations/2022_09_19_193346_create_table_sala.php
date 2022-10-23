@@ -18,6 +18,7 @@ return new class extends Migration
         Schema::create('sala', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->string('url');
             $table->foreignId('id_usuario')->references('id')->on('usuario');
             $table->string('image')->nullable();
             $table->json('config')->nullable();
@@ -28,7 +29,8 @@ return new class extends Migration
 
         $s = new Sala();
         $s->nombre = "Diseño y prototipo";
-        $s->id_usuario = Usuario::last()->id;
+        $s->url = "diseno-y-prototipo";
+        $s->id_usuario = 1;
         $s->save();
     }
 

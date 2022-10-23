@@ -93,45 +93,37 @@
 
   <main>
 
-    <section class="py-5 text-center container">
+    <section class="pt-1 text-center container">
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="fw-light duck mb-3">
-            📢 HACE CUACK!!
-            <img src="{{ asset('img/icono.svg') }}" width="30" height="30" alt="">
-
+          <h1 class="fw-light duck">
+            {{ $s->nombre }}
           </h1>
-          <p class="lead text-muted mb-3">
-            Envía tu feedback de forma rápida y sencilla, nos importa tu comentario,
-            lo leeremos con mucho gusto
-          </p>
-          <img src="{{ asset('img/patobailando.gif') }}" width="100" alt="">
-          <p class="lead text-muted my-3">
-            Porque tu opinión también vale y hace <strong>CUAK!</strong>
-          </p>
           <p>
-            <a href="#" class="btn btn-primary my-2">Main call to action</a>
-            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+            {{ $s->descripcion }}
           </p>
         </div>
       </div>
     </section>
 
-    <div class="album py-5 bg-light">
+    <div class="album pt-2 bg-light">
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          @foreach ($salas as $s)
+          @foreach ($s->muros as $m)
             <div class="col">
               <div class="card shadow-sm">
                 <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: IMG TEST" preserveAspectRatio="xMidYMid slice" focusable="false"><title>TEST</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
 
                 <div class="card-body">
                   <h4 class="card-title text-center mb-3">
-                    {{ $s->nombre }}
+                    {{ $m->titulo }}
                   </h4>
+                  <p class="card-text mb-3">
+                    {{ $m->descripcion }}
+                  </p>
                   <div class="d-flex justify-content-center align-items-center">
                     <div class="btn-group">
-                      <a href="{{ route('main.sala',$s->url) }}" class="btn btn-sm btn-primary">
+                      <a href="{{ route('main.sala.muro', [$s->url, $m->id]) }}" class="btn btn-sm btn-primary">
                         <strong>ENTRAR</strong>
                       </a>
                     </div>
