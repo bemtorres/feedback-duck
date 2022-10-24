@@ -10,8 +10,7 @@
   <link rel="stylesheet" href="{{ asset('template/assets/css/lineicons.css') }}" />
   <link rel="stylesheet" href="{{ asset('template/assets/css/materialdesignicons.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('template/assets/css/main.css') }}" />
-
-
+  <script src="https://kit.fontawesome.com/843e61752f.js" crossorigin="anonymous"></script>
 
   <style>
     .bd-placeholder-img {
@@ -96,14 +95,31 @@
               {{ $m->feedbacks->count() }}
             </span>
           </h4>
-          <ul class="list-group">
+
+          <ol class="list-group list-group-numbered">
             @foreach ($m->feedbacks as $f)
-              <li class="list-group-item d-flex justify-content-between align-items-center ">
+
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                {{-- <div class="fw-bold"></div> --}}
                 {{ $f->comentario }}
-                {{-- <span class="badge bg-primary rounded-pill">14</span> --}}
-              </li>
+
+              </div>
+              {{-- {{ $f->config['star'] ?? '' }} --}}
+              @if ($f->config['star'] ?? false)
+              <span class="badge text-end rounded-pill">
+                @for ($i = 0; $i < $f->config['star']; $i++)
+                  <i class="fa-solid fa-star text-warning"></i>
+                @endfor
+                @for ($i = 0; $i < 5-$f->config['star']; $i++)
+                  <i class="fa-solid fa-star text-gray"></i>
+                @endfor
+              </span>
+              @endif
+            </li>
             @endforeach
-          </ul>
+
+          </ol>
         </div>
 
       </div>

@@ -43,6 +43,11 @@ class MainController extends Controller
       $f->id_muro = $m->id;
       $f->nombre = $request->input('nombre');
       $f->comentario = $request->input('feedback');
+      $config = [
+        'star' => $request->input('estrellas')
+      ];
+
+      $f->config = $config;
       $f->save();
 
       return back()->with('success','Se ha enviado su feedback');

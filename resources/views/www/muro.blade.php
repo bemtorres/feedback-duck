@@ -53,6 +53,29 @@
 }
 
 
+input[type="radio"] {
+  display: none;
+  font-size: 100px;
+}
+
+label {
+  color: grey;
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
+}
+
   </style>
 </head>
 <body>
@@ -121,6 +144,7 @@
             @csrf
             <hr class="my-4">
             <div class="row gy-3">
+
               <div class="col-md-12">
                 <label for="cc-name" class="form-label">Nombre</label>
                 <input type="text" class="form-control" name="nombre" id="cc-name" placeholder="" required="">
@@ -129,6 +153,22 @@
               <div class="mb-3">
                 <label for="" class="form-label">Feedback</label>
                 <textarea class="form-control" name="feedback" id="" rows="3" required></textarea>
+              </div>
+
+              <div class="mb-3 text-center">
+                <p class="clasificacion">
+                  <input id="radio1" type="radio" name="estrellas" value="5"><!--
+                  --><label for="radio1" style="font-size: 34px;">★</label><!--
+                  --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+                  --><label for="radio2" style="font-size: 34px;">★</label><!--
+                  --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+                  --><label for="radio3" style="font-size: 34px;">★</label><!--
+                  --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+                  --><label for="radio4" style="font-size: 34px;">★</label><!--
+                  --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+                  --><label for="radio5" style="font-size: 34px;">★</label>
+                </p>
+                <small>Danos estrellitas</small>
               </div>
             </div>
 
