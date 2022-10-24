@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sala;
+use App\Services\ImportImage;
 use Illuminate\Http\Request;
 
 class SalaController extends Controller
@@ -40,12 +41,21 @@ class SalaController extends Controller
       try {
         $s = new Sala();
         $s->nombre = $request->input('nombre');
-        $s->url = $request->input('url');
+        $s->url = $s->nombre;
         $s->id_usuario = current_user()->id;
-        $s->image = '';
-        $s->save();
 
-        // return back()->with('success','se ha creado correctamente');
+        if(!empty($request->file('image'))){
+          $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+          ]);
+
+          $filename = 'room-' . time();
+          $folder = 'sala';
+          $s->image = ImportImage::save($request, 'image', $filename, $folder);
+        }
+
+        $s->save();
+        return redirect()->route('sala.index')->with('success','Se ha creado correctamente');
       } catch (\Throwable $th) {
         return back()->with('danger','Error intente nuevamente');
       }
