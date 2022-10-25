@@ -120,7 +120,7 @@
             Porque tu opinión también vale y hace <strong>CUACK!</strong>
           </p>
           <p>
-            <button onclick="playSound();" class="btn btn-primary my-2">CUAK CUAK!</button>
+            <button onclick="playSound();" class="btn btn-primary my-2">CUACK CUACK!</button>
             <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
               KENAY
             </button>
