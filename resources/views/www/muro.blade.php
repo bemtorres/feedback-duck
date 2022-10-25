@@ -100,11 +100,11 @@ input[type="radio"]:checked ~ label {
         </div>
       </div>
     </div> --}}
-    <div class="navbar navbar-dark shadow-sm">
+    <div class="navbar navbar-dark bg-primary shadow-sm">
       <div class="container">
-        <a href="{{ route('main.sala',$s->url) }}" href="btn btn-primary bg-primary">
-          VOLVER
-        </a>
+        <div class="d-grid gap-2">
+          <a href="{{ route('main.sala',$s->url) }}" class="btn btn-dark">CUAK!</a>
+        </div>
         <a href="#" class="navbar-brand d-flex align-items-center">
           <img src="{{ asset('img/icono.svg') }}" width="30" height="30" class="me-2" alt="">
           <div class="fa fa-home"></div>
@@ -123,7 +123,7 @@ input[type="radio"]:checked ~ label {
     <section class="pt-1 text-center container">
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="fw-light duck">
+          <h1 class="text-sm">
             {{ $s->nombre }}
           </h1>
           <h1 class="fw-light duck">
@@ -158,22 +158,22 @@ input[type="radio"]:checked ~ label {
               <div class="mb-3 text-center">
                 <p class="clasificacion">
                   <input id="radio1" type="radio" name="estrellas" value="5"><!--
-                  --><label for="radio1" style="font-size: 34px;">★</label><!--
+                  --><label for="radio1" style="font-size: 38px;">★</label><!--
                   --><input id="radio2" type="radio" name="estrellas" value="4"><!--
-                  --><label for="radio2" style="font-size: 34px;">★</label><!--
+                  --><label for="radio2" style="font-size: 38px;">★</label><!--
                   --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-                  --><label for="radio3" style="font-size: 34px;">★</label><!--
+                  --><label for="radio3" style="font-size: 38px;">★</label><!--
                   --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-                  --><label for="radio4" style="font-size: 34px;">★</label><!--
+                  --><label for="radio4" style="font-size: 38px;">★</label><!--
                   --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-                  --><label for="radio5" style="font-size: 34px;">★</label>
+                  --><label for="radio5" style="font-size: 38px;">★</label>
                 </p>
                 <small>Danos estrellitas</small>
               </div>
             </div>
 
             <hr class="my-4">
-            <button class="w-100 btn btn-primary btn-lg" type="submit">ENVIAR</button>
+            <button class="w-100 btn btn-warning btn-lg" type="submit"><strong>CUACK! CUACK!</strong></button>
           </form>
         </div>
 

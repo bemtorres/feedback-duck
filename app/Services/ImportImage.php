@@ -7,40 +7,8 @@ use Illuminate\Support\Facades\Storage;
 
 class ImportImage
 {
+
   public static function save(Request $request, $inputName = 'image' ,$name = '', $folderSave = 'public/trash', $validate = false, $folderDate = false){
-    try {
-      if ($validate) {
-        $request->validate([
-          $inputName => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-      }
-
-      $nFile = '';
-      if ($folderDate) {
-        $folderSave .= '/' . date('Y') . '/' . date('m');
-        $nFile = date('Y') . '/' . date('m') . '/';
-      }
-
-      $file = $request->file($inputName);
-      $filename = $name .'.'. $file->getClientOriginalExtension();
-      // $file->storeAs($folderSave,$filename);
-
-      // $image_path = $request->file('image')->store('image', 'public');
-      // $image_path = $file->store('image', 'public');
-
-      // return $image_path;
-      // return $nFile.$filename;
-
-      $a = $request->image->move(public_path('file/img/'.$folderSave), $filename);
-
-      return $filename;
-    } catch (\Throwable $th) {
-      return 400;
-    }
-  }
-
-
- public static function save2(Request $request, $inputName = 'image' ,$name = '', $folderSave = 'public/trash', $validate = false, $folderDate = false){
     try {
       if ($validate) {
         $request->validate([

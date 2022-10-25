@@ -28,7 +28,12 @@ class MainController extends Controller
     try {
       $s = Sala::where('activo',true)->where('url',$url)->firstOrFail();
       $m = Muro::where('id_sala',$s->id)->findOrFail($id);
-      return view('www.muro',compact('s','m'));
+
+      if ($m->getConfigActiveComentario()) {
+        return view('www.muro',compact('s','m'));
+      }
+
+      return back()->with('warning','No puede recibir comentarios');
     } catch (\Throwable $th) {
       return back()->with('danger','No existe sala');
     }

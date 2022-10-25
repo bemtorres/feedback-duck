@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="{{ asset('template/assets/css/lineicons.css') }}" />
   <link rel="stylesheet" href="{{ asset('template/assets/css/materialdesignicons.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('template/assets/css/main.css') }}" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" integrity="sha512-DIW4FkYTOxjCqRt7oS9BFO+nVOwDL4bzukDyDtMO7crjUZhwpyrWBFroq+IqRe6VnJkTpRAS6nhDvf0w+wHmxg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
   <style>
@@ -80,7 +80,7 @@
     </div> --}}
     <div class="navbar navbar-dark bg-dark shadow-sm">
       <div class="container">
-        <a href="#" class="navbar-brand d-flex align-items-center">
+        <a href="/" class="navbar-brand d-flex align-items-center">
           <img src="{{ asset('img/icono.svg') }}" width="30" height="30" class="me-2" alt="">
           <strong>Feedback Duck</strong>
         </a>
@@ -92,7 +92,6 @@
   </header>
 
   <main>
-
     <section class="pt-1 text-center container">
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
@@ -112,7 +111,9 @@
           @foreach ($s->muros as $m)
             <div class="col">
               <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: IMG TEST" preserveAspectRatio="xMidYMid slice" focusable="false"><title>TEST</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                {{-- <svg  xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: IMG TEST" preserveAspectRatio="xMidYMid slice" focusable="false"><title>TEST</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> --}}
+
+                <img class="bd-placeholder-img card-img-top" src="{{ asset($m->getImage()) }}" width="100%" height="225"alt="">
 
                 <div class="card-body">
                   <h4 class="card-title text-center mb-3">
@@ -124,7 +125,7 @@
                   <div class="d-flex justify-content-center align-items-center">
                     <div class="btn-group">
                       <a href="{{ route('main.sala.muro', [$s->url, $m->id]) }}" class="btn btn-sm btn-primary">
-                        <strong>ENTRAR</strong>
+                        <strong>CUACK!</strong>
                       </a>
                     </div>
                   </div>
@@ -150,5 +151,10 @@
 
   <script src="{{ asset('template/assets/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('template/assets/js/main.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  @include('layouts._toast')
+
 </body>
 </html>

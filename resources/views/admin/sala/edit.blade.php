@@ -9,7 +9,7 @@
     <div class="col-md-6">
       <div class="title mb-30">
         @component('components._back')
-          @slot('route', route('sala.index'))
+          @slot('route', route('sala.show',$s->id))
           @slot('titulo','Nueva sala')
         @endcomponent
       </div>
@@ -42,21 +42,26 @@
           Start creating the best possible user experience for you
           customers.
         </p> --}}
-        <form action="{{ route('sala.store') }}" method="POST"  enctype="multipart/form-data">
+        <form action="{{ route('sala.update', $s->id) }}" method="POST" enctype="multipart/form-data">
           @csrf
+          @method('PUT')
           <div class="row">
             <div class="row mb-3">
               <div class="col-6">
                 <label for="inputNombre">Nombre</label>
               </div>
               <div class="col-6">
-                <input type="text" class="form-control" id="inputNombre" name="nombre" placeholder="" required>
+                <input type="text" class="form-control" id="inputNombre" name="nombre" placeholder="" value="{{ $s->nombre }}" required>
               </div>
             </div>
 
             <div class="row mb-3">
               <div class="col-6">
                 <label class="col-form-label" for="hf-rut">Imagen</label>
+              </div>
+              <div class="input-group">
+                <img src="{{ asset($s->getImage()) }}" class='Responsive image img-thumbnail'  width='200px' height='200px' alt="">
+                <br>
               </div>
               <div class="input-group">
                 <!-- <img src="" class='Responsive image img-thumbnail'  width='200px' height='200px' alt=""> -->
@@ -67,6 +72,24 @@
             <div class="form-group text-center">
               <div id="preview"></div>
             </div>
+
+
+            <div class="row mb-3">
+              <div class="col-6">
+                <label for="inputNombre">Mostrar</label>
+              </div>
+              <div class="col-6">
+                <select class="form-select" name="active" aria-label="Default select example">
+                  <option value="1" @if ($s->getConfigActive())
+                    selected
+                  @endif>Si</option>
+                  <option value="2" @if (!$s->getConfigActive())
+                    selected
+                  @endif>No</option>
+                </select>
+              </div>
+            </div>
+
 
             <div class="col-12">
               <div class="button-group d-flex justify-content-center flex-wrap">

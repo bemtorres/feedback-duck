@@ -4,11 +4,15 @@
 {{-- @endpush --}}
 @section('content')
 
+
 <div class="title-wrapper pt-30">
   <div class="row align-items-center">
     <div class="col-md-6">
       <div class="title mb-30">
-        <h2>Salas</h2>
+        @component('components._back')
+          @slot('route', route('sala.show',$m->id_sala))
+          @slot('titulo','Sala ' . $m->sala->nombre . ' - MURO ' . $m->titulo)
+        @endcomponent
       </div>
     </div>
     {{-- <div class="col-md-6">
@@ -27,59 +31,48 @@
     </div> --}}
   </div>
 </div>
+
 <div class="tables-wrapper">
   <div class="row">
-
     <div class="col-lg-12">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link {{ activeTab(["muro/".$m->id]) }}" href="{{ route('muro.show',$m->id) }}">
+            Feedbacks
+          </a>
+        </li>
+        <li class="nav-item {{ activeTab(["muro/".$m->id."/edit"]) }}">
+          <a class="nav-link" href="{{ route('muro.edit',$m->id) }}">
+            Editar
+          </a>
+        </li>
+      </ul>
       <div class="card-style mb-30">
-        <a href="{{ route('sala.create') }}" class="btn btn-primary">
-          Crear nueva
-        </a>
         <div class="table-wrapper table-responsive">
-          <table class="table">
+          <table class="table table-hover">
             <thead>
               <tr>
+                <th></th>
                 <th class="lead-info"><h6>Nombre</h6></th>
-                <th class="lead-email"><h6>Descripcion</h6></th>
-                <th class="lead-company"><h6>Usuario</h6></th>
-                <th><h6></h6></th>
+                <th class="lead-email"><h6>Correo</h6></th>
+                <th class="lead-company"><h6>Comentario</h6></th>
               </tr>
               <!-- end table row-->
             </thead>
             <tbody>
-              @foreach ($salas as $s)
+              @foreach ($m->feedbacks as $key => $f)
               <tr>
-                <td class="min-width">
-                  <div class="lead">
-                    <div class="lead-image">
-                      <img src="{{ asset($s->getImage()) }}" alt="">
-                    </div>
-                    <div class="lead-text">
-                      <p>{{ $s->nombre }}</p>
-                    </div>
-                  </div>
-                </td>
-                <td class="min-width">
-                  <p>{{ $s->descripcion }}</p>
-                </td>
-                <td class="min-width">
-                  <p>{{ $s->usuario->nombre }}</p>
-                </td>
                 <td>
-                  @if ($s->getConfigActive())
-                    <span class="badge rounded-pill bg-success">
-                      Activado
-                    </span>
-                  @else
-                    <span class="badge rounded-pill bg-danger">
-                      Desactivado
-                    </span>
-                  @endif
+                  {{ ++$key }}
                 </td>
-                <td>
-                  <a href="{{ route('sala.show',$s->id) }}" class="btn btn-primary">
-                    Ver
-                  </a>
+                <td class="min-width">
+                  {{ $f->nombre }}
+                </td>
+                <td class="min-width">
+                  {{ $f->correo }}
+                </td>
+                <td class="min-width">
+                  {{ $f->comentario }}
                 </td>
               </tr>
               @endforeach

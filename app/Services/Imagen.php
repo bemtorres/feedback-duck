@@ -8,13 +8,11 @@ class Imagen
   private $photo;
   private $folder;
   private $img_default;
-  private $is_storage;
 
-  function __construct($photo, $folder, $img_default = null, $is_storage) {
+  function __construct($photo, $folder, $img_default = null) {
     $this->photo = $photo;
     $this->folder = $folder;
     $this->img_default = $img_default;
-    $this->is_storage = $is_storage;
   }
 
   public function call(){
@@ -39,7 +37,7 @@ class Imagen
         if ($img == $this->img_default) {
           return $this->img_default;
         }
-        return $this->is_storage ? $this->getStorage($img) : $this->getPublic($img);
+        return $this->getStorage($img);
       }
     } catch (\Throwable $th) {
       return $this->img_default;
@@ -48,9 +46,5 @@ class Imagen
 
   private function getStorage($img) {
     return \Storage::url($img);
-  }
-
-  private function getPublic($img) {
-    return asset($img);
   }
 }

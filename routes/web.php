@@ -31,8 +31,12 @@ Route::middleware('auth.usuario')->group( function () {
 
   // Route::get('sala', [MainController::class, 'muro'])->name('main.sala.muro');
 
-  Route::resource('sala', SalaController::class);
-  // Route::resource('muro',[MuroController::class]);
+  Route::resource('sala',SalaController::class);
+  Route::resource('muro',MuroController::class)->except(['create']);
+
+  Route::get('sala/{id}/muro',[MuroController::class, 'create'])->name('sala.muro.create');
+
+
   // Route::resource('usuario',[UsuarioController::class]);
 });
 

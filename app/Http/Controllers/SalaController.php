@@ -41,7 +41,7 @@ class SalaController extends Controller
       try {
         $s = new Sala();
         $s->nombre = $request->input('nombre');
-        $s->url = $s->nombre;
+        $s->url = time();
         $s->id_usuario = current_user()->id;
 
         if(!empty($request->file('image'))){
@@ -49,9 +49,13 @@ class SalaController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
           ]);
 
-          $filename = 'room-' . time();
-          $folder = 'sala';
-          $s->image = ImportImage::save($request, 'image', $filename, $folder);
+          $filename = time();
+          $folder = 'public/photo_rooms';
+          $img = ImportImage::save($request, 'image', $filename, $folder);
+
+          if ($img != 400) {
+            $s->image = $img;
+          }
         }
 
         $s->save();
@@ -69,7 +73,9 @@ class SalaController extends Controller
      */
     public function show($id)
     {
-        //
+      $s = Sala::with(['muros','muros.usuario','muros.feedbacks'])->findOrFail($id);
+
+      return view('admin.sala.show',compact('s'));
     }
 
     /**
@@ -80,7 +86,9 @@ class SalaController extends Controller
      */
     public function edit($id)
     {
-        //
+      $s = Sala::findOrFail($id);
+
+      return view('admin.sala.edit',compact('s'));
     }
 
     /**
@@ -92,7 +100,33 @@ class SalaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      try {
+        $s = Sala::findOrFail($id);
+        $s->nombre = $request->input('nombre');
+
+        if(!empty($request->file('image'))){
+          $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+          ]);
+
+          $filename = time();
+          $folder = 'public/photo_rooms';
+          $img = ImportImage::save($request, 'image', $filename, $folder);
+
+          if ($img != 400) {
+            $s->image = $img;
+          }
+        }
+
+        $config = $s->config;
+        $config['active'] = $request->input('active') == 1 ? true : false;
+        $s->config = $config;
+
+        $s->update();
+        return redirect()->route('sala.edit',$s->id)->with('success','Se ha creado actializado');
+      } catch (\Throwable $th) {
+        return back()->with('danger','Error intente nuevamente');
+      }
     }
 
     /**

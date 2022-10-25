@@ -55,6 +55,16 @@
 
 
   </style>
+
+
+  <script src="https://code.createjs.com/1.0.0/soundjs.min.js"></script>
+
+  <script>
+
+    function playSound () {
+      createjs.Sound.play('/img/cuak.mp3');
+    }
+  </script>
 </head>
 <body>
   <header>
@@ -110,8 +120,10 @@
             Porque tu opinión también vale y hace <strong>CUAK!</strong>
           </p>
           <p>
-            <a href="#" class="btn btn-primary my-2">Main call to action</a>
-            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+            <button onclick="playSound();" class="btn btn-primary my-2">CUAK CUAK!</button>
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              KENAY
+            </button>
           </p>
         </div>
       </div>
@@ -121,6 +133,7 @@
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           @foreach ($salas as $s)
+            @continue(!$s->getConfigActive())
             <div class="col">
               <div class="card shadow-sm">
                 <img class="bd-placeholder-img card-img-top" src="{{ $s->getImage() }}" width="100%" height="225"alt="">
@@ -132,7 +145,7 @@
                   <div class="d-flex justify-content-center align-items-center">
                     <div class="btn-group">
                       <a href="{{ route('main.sala',$s->url) }}" class="btn btn-sm btn-primary">
-                        <strong>ENTRAR</strong>
+                        <strong>CUACK!</strong>
                       </a>
                     </div>
                   </div>
@@ -156,7 +169,26 @@
   </footer>
 
 
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">KENAY</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="{{ asset('img/kenay.jpg') }}" class="img-fluid" alt="">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CUACK! CUACK!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="{{ asset('template/assets/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('template/assets/js/main.js') }}"></script>
+
 </body>
 </html>

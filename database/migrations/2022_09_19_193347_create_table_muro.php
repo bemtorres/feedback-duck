@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('image')->nullable();
             $table->foreignId('id_sala')->references('id')->on('sala');
+            $table->foreignId('id_usuario')->references('id')->on('usuario');
             $table->json('config')->nullable();
             $table->boolean('activo')->default(true);
             $table->timestamps();
@@ -30,7 +31,8 @@ return new class extends Migration
         $id_sala = 1;
         $m = new Muro();
         $m->titulo = "Delivery";
-        $m->id_sala = $id_sala;
+        $m->id_sala = 1;
+        $m->id_usuario = 1;
         $m->save();
     }
 
