@@ -117,7 +117,7 @@
           </p>
           <img src="{{ asset('img/patobailando.gif') }}" width="100" alt="">
           <p class="lead text-muted my-3">
-            Porque tu opinión también vale y hace <strong>CUAK!</strong>
+            Porque tu opinión también vale y hace <strong>CUACK!</strong>
           </p>
           <p>
             <button onclick="playSound();" class="btn btn-primary my-2">CUAK CUAK!</button>
