@@ -154,7 +154,6 @@ input[type="radio"]:checked ~ label {
               </div>
               @endif
 
-
               <div class="col-md-12">
                 <label for="input_duck_name" class="form-label">Nombre</label>
                 <input type="text" class="form-control" name="nombre" id="input_duck_name" placeholder="" required="">

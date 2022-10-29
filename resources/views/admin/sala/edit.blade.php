@@ -10,7 +10,7 @@
       <div class="title mb-30">
         @component('components._back')
           @slot('route', route('sala.show',$s->id))
-          @slot('titulo','Nueva sala')
+          @slot('titulo','Editar sala - ' . $s->nombre)
         @endcomponent
       </div>
     </div>

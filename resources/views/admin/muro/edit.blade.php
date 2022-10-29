@@ -10,7 +10,7 @@
       <div class="title mb-30">
         @component('components._back')
           @slot('route', route('muro.show',$m->id))
-          @slot('titulo','Nueva saldaskdjasldjalskd')
+          @slot('titulo','Editar ' . $m->titulo)
         @endcomponent
       </div>
     </div>

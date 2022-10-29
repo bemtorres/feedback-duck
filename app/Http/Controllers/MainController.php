@@ -44,6 +44,17 @@ class MainController extends Controller
       $s = Sala::where('activo',true)->where('url',$url)->firstOrFail();
       $m = Muro::where('id_sala',$s->id)->findOrFail($id);
 
+
+      if (!$m->getConfigActiveComentario()) {
+        return back()->with('danger','No puede recibir cuackmentarios');
+      }
+
+      if ($m->getConfigIsPassword()) {
+        if ( $m->getConfigPassword() != $request->input('pass')) {
+          return back()->with('danger','Cuack invalida');
+        }
+      }
+
       $f = new Feedback();
       $f->id_muro = $m->id;
       $f->nombre = $request->input('nombre');
@@ -55,8 +66,9 @@ class MainController extends Controller
       $f->config = $config;
       $f->save();
 
-      return back()->with('success','Se ha enviado su feedback');
+      return back()->with('success','Se ha enviado su feedback. Cuack!');
     } catch (\Throwable $th) {
+      return $th;
       return back()->with('danger','Error intente nuevamente');
     }
   }
