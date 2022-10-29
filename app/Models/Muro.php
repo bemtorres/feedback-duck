@@ -48,4 +48,11 @@ class Muro extends Model
     return $this->config['comentario'] ?? false;
   }
 
+  public function getConfigPassword() {
+    return $this->config['password'] ?? '';
+  }
+
+  public function getConfigIsPassword() {
+    return $this->config['is_password'] ?? false;
+  }
 }

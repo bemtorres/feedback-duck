@@ -34,6 +34,10 @@ class Sala extends Model
     return $this->belongsTo(Usuario::class,'id_usuario');
   }
 
+  public function scopeIsActivo($query) {
+    return $query->where('activo',true);
+  }
+
   public function getImage(){
     return (new Imagen($this->image, $this->folderDefault, $this->imgDefault))->call();
   }

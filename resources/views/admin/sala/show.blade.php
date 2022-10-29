@@ -52,18 +52,19 @@
         <a href="{{ route('sala.muro.create', $s->id) }}" class="btn btn-success">
           Crear muro
         </a>
-        <div class="table-wrapper table-responsive">
-          <table class="table">
+        <div class="table-responsive">
+          <table class="table table-sm table-hover">
             <thead>
               <tr>
-                <th class="lead-info"><h6>Nombre</h6></th>
-                <th class="lead-email"><h6>Descripcion</h6></th>
-                <th class="lead-company"><h6>Usuario</h6></th>
-                <th class="lead-company"><h6>Mostrar</h6></th>
-                <th class="lead-company"><h6>Feedback</h6></th>
-                <th><h6></h6></th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Usuario</th>
+                <th class="text-center">Total</th>
+                <th class="text-center">Mostrar</th>
+                <th class="text-center">Feedback</th>
+                <th class="text-center">Password</th>
+                <th></th>
               </tr>
-              <!-- end table row-->
             </thead>
             <tbody>
               @foreach ($s->muros as $m)
@@ -84,36 +85,35 @@
                 <td class="min-width">
                   <p>{{ $m->usuario->nombre }}</p>
                 </td>
-                <td>
+                <td class="text-center">
                   <span class="badge rounded-pill bg-success">
                     {{ $m->feedbacks->count() }}
                   </span>
                 </td>
-                <td>
+                <td class="text-center">
                   @if ($m->getConfigActive())
-                  <span class="badge rounded-pill bg-success">
-                    Activado
-                  </span>
+                    <i class="fa-solid fa-circle-check text-success"></i>
                   @else
-                    <span class="badge rounded-pill bg-danger">
-                      Desactivado
-                    </span>
+                    <i class="fa-solid fa-circle-xmark text-danger"></i>
                   @endif
                 </td>
-                <td>
+                <td class="text-center">
                   @if ($m->getConfigActiveComentario())
-                  <span class="badge rounded-pill bg-success">
-                    Activado
-                  </span>
+                    <i class="fa fa-circle-check text-success"></i>
                   @else
-                    <span class="badge rounded-pill bg-danger">
-                      Desactivado
-                    </span>
+                    <i class="fa-solid fa-circle-xmark text-danger"></i>
+                  @endif
+                </td>
+                <td class="text-center">
+                  @if ($m->getConfigIsPassword())
+                    <i class="fa-solid fa-lock"></i>
+                  @else
+                    <i class="fa-solid fa-lock-open text-gray"></i>
                   @endif
                 </td>
                 <td>
-                  <a href="{{ route('muro.show',$m->id) }}" class="btn btn-primary">
-                    Ver
+                  <a href="{{ route('muro.show',$m->id) }}" class="btn btn-primary btn-sm">
+                    ver
                   </a>
                 </td>
               </tr>

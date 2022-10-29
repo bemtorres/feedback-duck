@@ -10,14 +10,14 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
   public function index() {
-    $salas = Sala::where('activo',true)->get();
+    $salas = Sala::isActivo()->get();
 
     return view('www.index', compact('salas'));
   }
 
   public function sala($url) {
     try {
-      $s = Sala::where('activo',true)->where('url',$url)->with('muros')->firstOrFail();
+      $s = Sala::isActivo()->where('url',$url)->with('muros')->firstOrFail();
       return view('www.sala',compact('s'));
     } catch (\Throwable $th) {
       return back()->with('danger','No existe sala');
@@ -26,7 +26,7 @@ class MainController extends Controller
 
   public function muro($url, $id) {
     try {
-      $s = Sala::where('activo',true)->where('url',$url)->firstOrFail();
+      $s = Sala::isActivo()->where('url',$url)->firstOrFail();
       $m = Muro::where('id_sala',$s->id)->findOrFail($id);
 
       if ($m->getConfigActiveComentario()) {

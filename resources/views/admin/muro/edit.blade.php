@@ -113,7 +113,30 @@
               </div>
             </div>
 
+            <div class="row mb-3">
+              <div class="col-6">
+                <label for="inputNombre">Habilitar password</label>
+              </div>
+              <div class="col-6">
+                <select class="form-select" name="active_pass" aria-label="Default select example">
+                  <option value="1" @if ($m->getConfigIsPassword())
+                    selected
+                  @endif>Si</option>
+                  <option value="2" @if (!$m->getConfigIsPassword())
+                    selected
+                  @endif>No</option>
+                </select>
+              </div>
+            </div>
 
+            <div class="row mb-3">
+              <div class="col-6">
+                <label for="inputNombret">Contraseña</label>
+              </div>
+              <div class="col-6">
+                <input type="text" class="form-control" id="pass" name="pass" value="{{ $m->getConfigPassword() }}">
+              </div>
+            </div>
 
             <div class="col-12">
               <div class="button-group d-flex justify-content-center flex-wrap">

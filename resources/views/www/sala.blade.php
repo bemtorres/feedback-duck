@@ -109,6 +109,7 @@
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           @foreach ($s->muros as $m)
+            @continue(!$m->getConfigActive())
             <div class="col">
               <div class="card shadow-sm">
                 {{-- <svg  xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: IMG TEST" preserveAspectRatio="xMidYMid slice" focusable="false"><title>TEST</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> --}}
@@ -124,7 +125,7 @@
                   </p>
                   <div class="d-flex justify-content-center align-items-center">
                     <div class="btn-group">
-                      <a href="{{ route('main.sala.muro', [$s->url, $m->id]) }}" class="btn btn-sm btn-primary">
+                      <a href="{{ route('main.sala.muro', [$s->url, $m->id]) }}" id="btn-go-to-muro-{{ $m->id }}" class="btn btn-sm btn-primary">
                         <strong>CUACK!</strong>
                       </a>
                     </div>
