@@ -145,14 +145,23 @@ input[type="radio"]:checked ~ label {
             <hr class="my-4">
             <div class="row gy-3">
 
+              @if ($m->getConfigIsPassword())
+              <div class="col-md-3">
+                <label for="input_duck_name" class="form-label">
+                  <h5>🦆 SECRET CUACK</h5>
+                </label>
+                <input type="password" class="form-control" name="pass" id="input_duck_pass" placeholder="" required="">
+              </div>
+              @endif
+
               <div class="col-md-12">
-                <label for="cc-name" class="form-label">Nombre</label>
-                <input type="text" class="form-control" name="nombre" id="cc-name" placeholder="" required="">
+                <label for="input_duck_name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="nombre" id="input_duck_name" placeholder="" required="">
               </div>
 
               <div class="mb-3">
                 <label for="" class="form-label">Feedback</label>
-                <textarea class="form-control" name="feedback" id="" rows="3" required></textarea>
+                <textarea class="form-control" name="feedback" id="input_duck_feedback" rows="3" required></textarea>
               </div>
 
               <div class="mb-3 text-center">
@@ -173,7 +182,9 @@ input[type="radio"]:checked ~ label {
             </div>
 
             <hr class="my-4">
-            <button class="w-100 btn btn-warning btn-lg" type="submit"><strong>CUACK! CUACK!</strong></button>
+            <button class="w-100 btn btn-warning btn-lg" id="btn-submit" type="submit">
+              <strong>CUACK! CUACK!</strong>
+            </button>
           </form>
         </div>
 

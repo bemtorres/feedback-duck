@@ -126,6 +126,10 @@ class MuroController extends Controller
         $config = $m->config;
         $config['active'] = $request->input('active') == 1 ? true : false;
         $config['comentario'] = $request->input('active_comentario') == 1 ? true : false;
+
+        $config['password'] = $request->input('pass');
+        $config['is_password'] = $request->input('active_pass') == 1 ? true : false;
+
         $m->config = $config;
 
         $m->save();

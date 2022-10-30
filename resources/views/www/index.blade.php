@@ -109,7 +109,6 @@
           <h1 class="fw-light duck mb-3">
             📢 HACE CUACK!!
             <img src="{{ asset('img/icono.svg') }}" width="30" height="30" alt="">
-
           </h1>
           <p class="lead text-muted mb-3">
             Envía tu feedback de forma rápida y sencilla, nos importa tu comentario,
@@ -120,8 +119,8 @@
             Porque tu opinión también vale y hace <strong>CUACK!</strong>
           </p>
           <p>
-            <button onclick="playSound();" class="btn btn-primary my-2">CUACK CUACK!</button>
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button onclick="playSound();" id="btn-play-sound" class="btn btn-primary my-2">CUACK CUACK!</button>
+            <button type="button" class="btn btn-warning" id="btn-kenay" data-bs-toggle="modal" data-bs-target="#exampleModal">
               KENAY
             </button>
           </p>
@@ -144,7 +143,7 @@
                   </h4>
                   <div class="d-flex justify-content-center align-items-center">
                     <div class="btn-group">
-                      <a href="{{ route('main.sala',$s->url) }}" class="btn btn-sm btn-primary">
+                      <a href="{{ route('main.sala',$s->url) }}" id="btn-go-to-sala-{{ $s->id }}" class="btn btn-sm btn-primary">
                         <strong>CUACK!</strong>
                       </a>
                     </div>
