@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Feedback;
 use App\Models\Muro;
 use App\Models\Sala;
+use App\Services\UserInfo;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -59,8 +60,10 @@ class MainController extends Controller
       $f->id_muro = $m->id;
       $f->nombre = $request->input('nombre');
       $f->comentario = $request->input('feedback');
+
       $config = [
-        'star' => $request->input('estrellas')
+        'star' => $request->input('estrellas'),
+        'info' => UserInfo::get_data()
       ];
 
       $f->config = $config;
@@ -72,7 +75,6 @@ class MainController extends Controller
       return back()->with('danger','Error intente nuevamente');
     }
   }
-
 
   public function muroShow($url, $id) {
     try {
