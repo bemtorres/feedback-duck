@@ -28,17 +28,13 @@ Route::middleware('auth.usuario')->group( function () {
   //   return view('blank');
   // });
   Route::get('/home', [HomeController::class, 'index'])->name('home.index');
-
-  // Route::get('sala', [MainController::class, 'muro'])->name('main.sala.muro');
-
   Route::resource('sala',SalaController::class);
   Route::resource('muro',MuroController::class)->except(['create']);
 
   Route::get('sala/{id}/muro',[MuroController::class, 'create'])->name('sala.muro.create');
 
 
-  // Route::resource('usuario',[UsuarioController::class]);
+  Route::get('perfil', [HomeController::class, 'perfil'])->name('home.perfil');
+  Route::put('perfil', [HomeController::class, 'perfilUpdate'])->name('home.perfil');
+  Route::put('perfil/password', [HomeController::class, 'perfilUpdatePassword'])->name('home.perfil.password');
 });
-
-
-

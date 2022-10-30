@@ -162,7 +162,7 @@
               aria-labelledby="profile"
             >
               <li>
-                <a href="#0">
+                <a href="{{ route('home.perfil') }}">
                   <i class="lni lni-user"></i> Perfil
                 </a>
               </li>
