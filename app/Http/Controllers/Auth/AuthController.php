@@ -23,15 +23,19 @@ class AuthController extends Controller
 
         return redirect()->route('home.index');
       }else{
-        return back()->with('info','Error. Intente nuevamente.');
+        return back()->with('danger','Error. Intente nuevamente.');
       }
     } catch (\Throwable $th) {
-      return back()->with('info','Error. Intente nuevamente.');
+      return back()->with('danger','Error. Intente nuevamente.');
     }
   }
 
   public function sign_out() {
     close_sessions();
     return redirect()->route('root');
+  }
+
+  public function registrar() {
+    return view('auth.register');
   }
 }

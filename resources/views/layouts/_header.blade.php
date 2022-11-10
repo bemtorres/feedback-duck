@@ -148,7 +148,7 @@
                   <h6>{{ current_user()->nombre }}</h6>
                   <div class="image">
                     <img
-                      src="template/assets/images/profile/profile-image.png"
+                      src="{{ current_user()->getImage() }}"
                       alt=""
                     />
                     <span class="status"></span>
@@ -174,9 +174,9 @@
               {{-- <li>
                 <a href="#0"> <i class="lni lni-inbox"></i> Messages </a>
               </li> --}}
-              <li>
+              {{-- <li>
                 <a href="#0"> <i class="lni lni-cog"></i> Configuración </a>
-              </li>
+              </li> --}}
               <li>
                 <a href="{{ route('auth.sign_out') }}"> <i class="lni lni-exit text-danger"></i> Cerrar sesión </a>
               </li>

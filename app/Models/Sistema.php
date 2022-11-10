@@ -14,4 +14,8 @@ class Sistema extends Model
     protected $casts = [
       'config' => 'array',
     ];
+
+    public function isGoogle() {
+      return true;
+    }
 }

@@ -242,6 +242,7 @@
       </li> --}}
       {{-- <span class="divider"><hr /></span> --}}
 
+      @if (current_user()->admin)
       <li class="nav-item">
         <a href="notification.html">
           <span class="icon">
@@ -251,19 +252,20 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="{{ route('sala.index') }}">
-          <span class="icon">
-            <i class="fa-solid fa-door-open"></i>
-          </span>
-          <span class="text">Salas</span>
-        </a>
-      </li>
-      <li class="nav-item">
         <a href="notification.html">
           <span class="icon">
             <i class="fa-solid fa-cog"></i>
           </span>
           <span class="text">Sistema</span>
+        </a>
+      </li>
+      @endif
+      <li class="nav-item">
+        <a href="{{ route('sala.index') }}">
+          <span class="icon">
+            <i class="fa-solid fa-door-open"></i>
+          </span>
+          <span class="text">Salas</span>
         </a>
       </li>
     </ul>

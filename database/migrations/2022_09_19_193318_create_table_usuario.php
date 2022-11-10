@@ -29,8 +29,8 @@ return new class extends Migration
         $u = new Usuario();
         $u->nombre = "Benjamin";
         $u->apellido = "Mora";
-        $u->correo = "bej.mora@profesor.duoc.cl";
-        $u->password = hash('sha256', 'feebacks');
+        $u->correo = "benja.mora.torres@gmail.com";
+        $u->password = hash('sha256', 'bemtorres');
         $u->cargo = "Profesor";
         $u->admin = true;
         $u->save();

@@ -15,7 +15,9 @@ class SalaController extends Controller
      */
     public function index()
     {
-      $salas = Sala::with('usuario')->get();
+      $salas = current_user()->admin ?
+        Sala::with('usuario')->get() :
+        Sala::where('id_usuario', current_user()->id)->get();
 
       return view('admin.sala.index',compact('salas'));
     }
@@ -73,7 +75,13 @@ class SalaController extends Controller
      */
     public function show($id)
     {
-      $s = Sala::with(['muros','muros.usuario','muros.feedbacks'])->findOrFail($id);
+      $s = Sala::with(['muros','muros.usuario','muros.feedbacks']);
+
+      if (!current_user()->admin) {
+        $s = $s->where('id_usuario', current_user()->id);
+      }
+
+      $s = $s->findOrFail($id);
 
       return view('admin.sala.show',compact('s'));
     }
@@ -87,6 +95,10 @@ class SalaController extends Controller
     public function edit($id)
     {
       $s = Sala::findOrFail($id);
+
+      if (!current_user()->admin) {
+        $s = Sala::where('id_usuario', current_user()->id)->findOrFail($id);
+      }
 
       return view('admin.sala.edit',compact('s'));
     }

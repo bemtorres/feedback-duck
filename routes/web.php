@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\GoogleUserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MuroController;
@@ -20,6 +21,10 @@ Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 
 
+Route::get('registrar', [AuthController::class, 'registrar'])->name('auth.register');
+Route::get('auth/google', [GoogleUserController::class, 'redirectToGoogle' ]);
+Route::get('auth/google/callback', [GoogleUserController::class, 'handleGoogleCallback' ]);
+// Route::get('auth/google/callback', 'Auth\GoogleUserController@handleGoogleCallback');
 
 Route::middleware('auth.usuario')->group( function () {
   Route::any('/sign_out', [AuthController::class, 'sign_out'])->name('auth.sign_out');

@@ -7,10 +7,8 @@
   <link rel="shortcut icon" href="/img/icono.svg" type="image/x-icon" />
   <title>Tu opinión también vale y hace cuack! - FEEDBACK DUCK</title>
   <link rel="stylesheet" href="{{ asset('template/assets/css/bootstrap.min.css') }}" />
-  <link rel="stylesheet" href="{{ asset('template/assets/css/lineicons.css') }}" />
-  <link rel="stylesheet" href="{{ asset('template/assets/css/materialdesignicons.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('template/assets/css/main.css') }}" />
-
+  <script src="https://kit.fontawesome.com/843e61752f.js" crossorigin="anonymous"></script>
 
 
   <style>
@@ -94,9 +92,10 @@
           <img src="{{ asset('img/icono.svg') }}" width="30" height="30" class="me-2" alt="">
           <strong>Feedback Duck</strong>
         </a>
-        {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button> --}}
+        <a href="/login" class="btn bg-dark ">
+          <i class="fa-solid fa-user text-white"></i>
+        </a>
+
       </div>
     </div>
   </header>

@@ -1,9 +1,10 @@
 @php
   $u=''; $p='';
   if (App::environment(['local'])) {
-    $u = 'benja.mora.torres@gmail.com';
-    $p = 'bemtorres';
+    $u = 'bej.mora@profesor.duoc.cl';
+    $p = 'feebacks';
   }
+
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +57,7 @@
         <div class="col-lg-6">
           <div class="signin-wrapper">
             <div class="form-wrapper">
-              <h6 class="mb-15">Bienvenidos</h6>
+              <h6 class="mb-15">Bienvenidos al registro de usuario</h6>
 
               <p class="text-sm mb-25">
                 {{-- Bienvenidos a  --}}
@@ -66,7 +67,13 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="input-style-1">
-                      <label>Correo Electrónico</label>
+                      <label>Nombre de usuario</label>
+                      <input type="email" name="cname" value="{{ $u }}" placeholder="" required/>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Correo electrónico</label>
                       <input type="email" name="cname" value="{{ $u }}" placeholder="" required/>
                     </div>
                   </div>
@@ -83,16 +90,8 @@
                         Remember me next time</label>
                     </div>
                   </div> --}}
-                  <div class="col-12">
-                    <div class="text-start mb-30">
-
-                      @if (session('danger'))
-                      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        {{ session('danger') }}
-                      </div>
-                      @endif
-
+                  <div class="col-xxl-6 col-lg-12 col-md-6">
+                    <div class="text-start text-md-end text-lg-start text-xxl-end mb-30">
                     </div>
                   </div>
                   <div class="col-12">
@@ -101,23 +100,6 @@
                         Iniciar sesión
                       </button>
                     </div>
-                    {{-- @if ($sistema->googleEnabled()) --}}
-                    <hr>
-
-                    <script>
-                      var alertList = document.querySelectorAll('.alert');
-                      alertList.forEach(function (alert) {
-                        new bootstrap.Alert(alert)
-                      })
-                    </script>
-
-                    <div class="social-auth-links text-center mb-3">
-                      <a href="{{ url('auth/google') }}" class="btn btn-block btn-light btn-lg">
-                        <span aria-hidden="true" class="NA_Img dkWypw"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M20.64 12.2c0-.63-.06-1.25-.16-1.84H12v3.49h4.84a4.14 4.14 0 0 1-1.8 2.71v2.26h2.92a8.78 8.78 0 0 0 2.68-6.62z" fill="#4285F4"></path><path d="M12 21a8.6 8.6 0 0 0 5.96-2.18l-2.91-2.26a5.4 5.4 0 0 1-8.09-2.85h-3v2.33A9 9 0 0 0 12 21z" fill="#34A853"></path><path d="M6.96 13.71a5.41 5.41 0 0 1 0-3.42V7.96h-3a9 9 0 0 0 0 8.08l3-2.33z" fill="#FBBC05"></path><path d="M12 6.58c1.32 0 2.5.45 3.44 1.35l2.58-2.59A9 9 0 0 0 3.96 7.95l3 2.34A5.36 5.36 0 0 1 12 6.58z" fill="#EA4335"></path></g></svg></span>
-                        Inicia sesión con Google
-                      </a>
-                    </div>
-                    {{-- @endif --}}
                   </div>
                 </div>
               </form>

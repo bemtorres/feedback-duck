@@ -24,7 +24,7 @@ class HomeController extends Controller
     // $u->correo = $request->input('correo');
     $u->cargo = $request->input('cargo');
     // $u->admin = $request->input('admin') == 1 ? true : false;
-    $u->admin = true;
+    // $u->admin = false;
     $u->update();
 
     return back()->with('success','Actualizado');
