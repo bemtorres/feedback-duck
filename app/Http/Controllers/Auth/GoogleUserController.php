@@ -57,6 +57,7 @@ class GoogleUserController extends Controller
           $u->nombre = $name;
           $u->apellido = "";
           $u->correo = $email;
+          $u->image = $foto;
           $u->password = hash('sha256', 'feebacks2000');
           $u->cargo = "INGRESO GMAIL";
           $u->admin = false;
